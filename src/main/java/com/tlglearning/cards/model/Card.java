@@ -1,7 +1,9 @@
 package com.tlglearning.cards.model;
 
+import java.util.Objects;
+
 //Object is the super class
-public class Card {
+public class Card implements Comparable<Card> {
 
   private final Rank rank;
   private final Suit suit;
@@ -23,10 +25,35 @@ public class Card {
   }
 
   @Override
-  public String toString() {
-   return rank.symbol() + suit.symbol();
+  public int hashCode() {
+    return Objects.hash(rank, suit); // FIXME: Move this to initialization.
+
   }
 
-  // TODO: Override equals method.
-  //TODO: Override hashCode method.
+  @Override
+  public boolean equals(Object obj) {
+    boolean result;
+    if (this == obj) {
+      result = true;
+    } else if (obj instanceof Card) {
+      Card other = (Card) obj;
+      result = (this.rank == other.rank && this.suit == other.suit); //enums I can compare with ==
+    } else {
+      result = false;
+    }
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return rank.symbol() + suit.symbol();
+  }
+
+  @Override
+  public int compareTo(Card other) {
+    return 0; //TODO: Replace with comparison based on suit and rank
+
+  }
+
+
 }
