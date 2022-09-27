@@ -10,21 +10,8 @@ import java.util.Random;
 public class Main {
 
   public static void main(String[] args) {
-    //Anonymous class below
-    Comparator<Card> comparator = new Comparator<>() {
 
-      @Override
-      public int compare(Card card1, Card card2) {
-        int comparison = card1.suit().color().compareTo(card2.suit().color());
-        if (comparison == 0) {
-          comparison = card1.suit().compareTo(card2.suit());
-          if (comparison == 0) {
-            comparison = -card1.rank().compareTo(card2.rank());
-          }
-        }
-        return comparison;
-      }
-    };
+
 
     //TODO Create an instance of Deck
     Deck deck = new Deck();
@@ -43,7 +30,20 @@ public class Main {
 
     deck.sort();
     System.out.println(deck);
-    deck.sort(comparator);
+    deck.sort(new Comparator<>() {
+
+      @Override
+      public int compare(Card card1, Card card2) {
+        int comparison = card1.suit().color().compareTo(card2.suit().color());
+        if (comparison == 0) {
+          comparison = card1.suit().compareTo(card2.suit());
+          if (comparison == 0) {
+            comparison = -card1.rank().compareTo(card2.rank());
+          }
+        }
+        return comparison;
+      }
+    });
     System.out.println(deck);
 
   }
