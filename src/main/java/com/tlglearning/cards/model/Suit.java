@@ -33,6 +33,7 @@ public Color color() {
     return name.charAt(0) + name.substring(1).toLowerCase(); //turns it into Clubs instead of CLUBS
   }
 
+  // static nested enum inside the Suit enum
   public enum Color {
     BLACK, RED
   }

@@ -31,8 +31,8 @@ public class Main {
     System.out.println(deck);
 
   }
-
-  private class ColorFirst implements Comparator<Card> {
+// below is a static nested class
+  private static class ColorFirst implements Comparator<Card> {
 
     @Override
     public int compare(Card card1, Card card2) {
